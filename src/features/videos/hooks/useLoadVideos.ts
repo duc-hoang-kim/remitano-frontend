@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { VideoType } from "../types";
 
@@ -7,8 +8,7 @@ type useLoadVideosProps = {
 
 const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
   const path = 'api/v1/videos'
-  const params = { page: pageIndex }
-  const { data, isLoading, error } = useFetch({ path: path, method: 'GET', params: params})
+  const { data, isLoading, error } = useFetch({ path: path, method: 'GET', params: { page: pageIndex }})
 
   const parsedData: VideoType[] = data == null ? [] : (data as any[]).map(raw_video =>
     ({

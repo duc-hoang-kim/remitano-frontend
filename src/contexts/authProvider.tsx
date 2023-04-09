@@ -4,7 +4,7 @@ import {
   NavLink,
   useNavigate,
 } from 'react-router-dom';
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 type AuthProviderPropsType = {
   children: ReactNode

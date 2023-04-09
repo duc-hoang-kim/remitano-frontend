@@ -16,7 +16,6 @@ const useFetch = ({ path, method, params }: useFetchProps) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const body = method === "GET" ? null : params;
   const url =
     `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}?` +
     (method === "GET" ? new URLSearchParams(params) : "");
@@ -38,7 +37,7 @@ const useFetch = ({ path, method, params }: useFetchProps) => {
         setData(response.data);
         setIsLoading(false);
       });
-  }, [url, body]);
+  }, [url, JSON.stringify(params)]);
 
   return { data, isLoading, error };
 };
