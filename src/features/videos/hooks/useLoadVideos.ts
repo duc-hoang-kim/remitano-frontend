@@ -8,7 +8,7 @@ type useLoadVideosProps = {
 
 const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
   const path = 'api/v1/videos'
-  const { data, isLoading, error } = useFetch({ path: path, method: 'GET', params: { page: pageIndex }})
+  const { data, isLoading, error, total } = useFetch({ path: path, method: 'GET', params: { page: pageIndex }})
 
   const parsedData: VideoType[] = data == null ? [] : (data as any[]).map(raw_video =>
     ({
@@ -25,7 +25,7 @@ const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
     }) as VideoType
   )
 
-  return { data: parsedData, isLoading: isLoading, error: error }
+  return { data: parsedData, isLoading: isLoading, error: error, total: total }
 }
 
 export default useLoadVideos
