@@ -5,6 +5,7 @@ import ResponsiveAppBar from './components/navigation';
 import AuthProvider from './contexts/authProvider';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/homePage';
+import { Container } from '@mui/material';
 
 function App() {
   return (
@@ -12,11 +13,13 @@ function App() {
       <AuthProvider>
         <ResponsiveAppBar/>
 
-        <Routes>
-          <Route index element={<HomePage />} />
+        <Container sx={{ marginTop: '25px' }}>
+          <Routes>
+            <Route index element={<HomePage />} />
 
-          {/* <Route path="*" element={<NoMatch />} /> */}
-        </Routes>
+            {/* <Route path="*" element={<NoMatch />} /> */}
+          </Routes>
+        </Container>
       </AuthProvider>
     </BrowserRouter>
   );
