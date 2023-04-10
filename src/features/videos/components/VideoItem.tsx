@@ -5,6 +5,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownIcon from "@mui/icons-material/ThumbDownAlt";
 import ThumbDownOffIcon from "@mui/icons-material/ThumbDownOffAlt";
+import truncateText from "../../../utils/truncateText";
 
 type VideoItemProps = {
   video: VideoType;
@@ -40,7 +41,7 @@ const VideoItem = ({ video }: VideoItemProps) => {
             <ThumbDownIcon/> */}
           </Box>
           <Typography>Description:</Typography>
-          <Typography>{video.description}</Typography>
+          <Typography>{truncateText(video.description, 100)}</Typography>
         </Grid>
       </Grid>
     </Box>
