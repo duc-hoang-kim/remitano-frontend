@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 declare var process: {
   env: {
@@ -9,40 +9,54 @@ declare var process: {
 type useFetchProps = {
   path: string;
   method: "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
-  params: any;
+  onSuccess?: (data: any) => any;
 };
 
-const useFetch = ({ path, method, params }: useFetchProps) => {
+const useFetch = ({ path, method, onSuccess }: useFetchProps) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [total, setTotal] = useState(0);
-  const url =
-    `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}?` +
-    (method === "GET" ? new URLSearchParams(params) : "");
 
-  const fetch_params =
-    method === "GET"
-      ? { method: method }
-      : {
-          method: method,
-          body: JSON.stringify(params),
-        };
+  const fetchApi = useCallback(
+    (params: any = {}) => {
+      const url =
+        `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}?` +
+        (method === "GET" ? new URLSearchParams(params) : "");
 
-  useEffect(() => {
-    fetch(url, fetch_params)
-      .then((res) => {
+      const common_params = {
+        method: method,
+        mode: "cors" as RequestMode,
+        credentials: "include" as RequestCredentials,
+        headers: { "Content-Type": "application/json" },
+      };
+
+      const fetch_params =
+        method === "GET"
+          ? common_params
+          : { ...common_params, body: JSON.stringify(params) };
+
+      fetch(url, fetch_params).then((res) => {
         setTotal(parseInt(res.headers.get("Total") || "0"));
-
-        return res.json();
-      })
-      .then((response) => {
-        setError(response.error);
-        setData(response.data);
-        setIsLoading(false);
+        if (res.ok) {
+          res.json().then((resBody) => {
+            onSuccess?.(resBody);
+            setError(resBody.error);
+            setData(resBody.data);
+            setIsLoading(false);
+          });
+        } else {
+          res.json().then((resBody) => {
+            setError(resBody.error);
+            setData(resBody.data);
+            setIsLoading(false);
+          });
+        }
       });
-  }, [url, JSON.stringify(params)]);
+    },
+    [path]
+  );
 
-  return { data, isLoading, error, total };
+  return { data, isLoading, error, total, fetchApi };
 };
 export default useFetch;

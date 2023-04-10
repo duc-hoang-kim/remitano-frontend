@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import VideoIframe from "./videoIframe";
+import VideoIframe from "./VideoIframe";
 import { VideoType } from "../types";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from "@mui/icons-material/ThumbUpOffAlt";
