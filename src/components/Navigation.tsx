@@ -13,6 +13,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticate } from "../contexts/AuthContext";
 import useLogout from "../features/authentication/hooks/useLogout";
+import AddVideoButton from "../features/videos/components/AddVideoButton";
+import AddVideoMenuItem from "../features/videos/components/AddVideoMenuItem";
+import truncateText from "../utils/truncateText";
 
 const WEB_NAME = "Funny Movies";
 
@@ -43,16 +46,6 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const truncateEmail = (source: string | undefined, length: number) => {
-    if (!source) return null;
-
-    if (source.length <= length + 3) {
-      return source
-    } else {
-      return source.substring(0, Math.max(length)) + '...'
-    }
-  }
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -67,8 +60,7 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontWeight: 600,
               color: "inherit",
               textDecoration: "none",
             }}
@@ -116,12 +108,10 @@ function ResponsiveAppBar() {
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
 
-                  <MenuItem key="share movie" onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">Share a Movie</Typography>
-                  </MenuItem>
+                  <AddVideoMenuItem onClick={handleCloseNavMenu}/>
 
                   <MenuItem key="current user" onClick={handleCloseNavMenu}>
-                    <Typography>{truncateEmail(user?.email, 10)}</Typography>
+                    <Typography>{truncateText(user?.email, 10)}</Typography>
                   </MenuItem>
                 </>
               )}
@@ -132,14 +122,13 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontWeight: 600,
               color: "inherit",
               textDecoration: "none",
             }}
@@ -170,12 +159,8 @@ function ResponsiveAppBar() {
                   Logout
                 </Button>
 
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  Share a Movie
-                </Button>
+                <AddVideoButton/>
+
                 <Typography sx={{ mr: 3, my: 2, color: "white", display: "block", transform: 'translateY(5px)' }}>
                   Welcome {user?.email}
                 </Typography>

@@ -29,7 +29,7 @@ const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
       fetchApi({ page: pageIndex })
     }, [pageIndex])
 
-  return { data: parsedData, isLoading, error, total }
+  return { data: parsedData, isLoading, error, total, fetchVideos: fetchApi }
 }
 
 export default useLoadVideos
