@@ -15,7 +15,7 @@ const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
       id: raw_video.id,
       youtubeUrl: raw_video.youtube_url,
       youtubeId: raw_video.youtube_id,
-      sharedBy: raw_video.shared_by,
+      sharedBy: raw_video.sharer_email,
       upvoteCount: raw_video.upvote_count,
       downvoteCount: raw_video.downvote_count,
       description: raw_video.description,

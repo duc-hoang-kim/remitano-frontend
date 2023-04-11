@@ -27,7 +27,7 @@ const VideoItem = ({ video }: VideoItemProps) => {
         </Grid>
         <Grid item xs={12} md={7} pl={2}>
           <Typography variant="h5" color="red" fontWeight={600}>
-            {video.title}
+            {truncateText(video.title, 50)}
           </Typography>
           <Typography>Shared by: {video.sharedBy}</Typography>
           <Box sx={{ display: "flex" }}>
@@ -41,7 +41,7 @@ const VideoItem = ({ video }: VideoItemProps) => {
             <ThumbDownIcon/> */}
           </Box>
           <Typography>Description:</Typography>
-          <Typography>{truncateText(video.description, 100)}</Typography>
+          <Typography>{truncateText(video.description, 200)}</Typography>
         </Grid>
       </Grid>
     </Box>

@@ -27,6 +27,7 @@ const HomepageProvider = ({ children }: AuthProviderPropsType) => {
   const { data: videos, total, fetchVideos } = useLoadVideos({ pageIndex: page })
 
   const refresh = () => {
+    console.log('refresh')
     setPage(1);
     fetchVideos();
   }

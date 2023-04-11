@@ -16,7 +16,7 @@ const AddVideoMenuItem = (props: AddVideoMenuItemProps) => {
 
   return (
     <>
-      <MenuItem key="share movie" onClick={onClick}>
+      <MenuItem onClick={onClick}>
         <Typography textAlign="center">Share a Movie</Typography>
       </MenuItem>
       <AddVideoModal

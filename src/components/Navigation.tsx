@@ -20,7 +20,7 @@ import truncateText from "../utils/truncateText";
 const WEB_NAME = "Funny Movies";
 
 function ResponsiveAppBar() {
-  const { fetchLogout } = useLogout()
+  const { fetchLogout } = useLogout();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuthenticate();
 
@@ -50,20 +50,22 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <HomeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <HomeIcon
+            sx={{ display: { xs: "none", md: "flex", color: "black" }, mr: 1 }}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 600,
-              color: "inherit",
-              textDecoration: "none",
+              color: "black",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
             {WEB_NAME}
           </Typography>
@@ -102,36 +104,35 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">Login / Registry</Typography>
                 </MenuItem>
               )}
-              {isAuthenticated() && (
-                <>
-                  <MenuItem key="logout" onClick={onClickLogout}>
-                    <Typography textAlign="center">Logout</Typography>
-                  </MenuItem>
+              {isAuthenticated() && [
+                <MenuItem key="logout" onClick={onClickLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>,
 
-                  <AddVideoMenuItem onClick={handleCloseNavMenu}/>
+                <AddVideoMenuItem key="add video" onClick={handleCloseNavMenu} />,
 
-                  <MenuItem key="current user" onClick={handleCloseNavMenu}>
-                    <Typography>{truncateText(user?.email, 10)}</Typography>
-                  </MenuItem>
-                </>
-              )}
+                <MenuItem key="current user" onClick={handleCloseNavMenu}>
+                  <Typography>{truncateText(user?.email, 10)}</Typography>
+                </MenuItem>,
+              ]}
             </Menu>
           </Box>
-          <HomeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <HomeIcon
+            sx={{ display: { xs: "flex", md: "none", color: "black" }, mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 600,
-              color: "inherit",
-              textDecoration: "none",
+              color: "black",
             }}
+            onClick={() => navigate("/")}
           >
             {WEB_NAME}
           </Typography>
@@ -159,9 +160,17 @@ function ResponsiveAppBar() {
                   Logout
                 </Button>
 
-                <AddVideoButton/>
+                <AddVideoButton />
 
-                <Typography sx={{ mr: 3, my: 2, color: "white", display: "block", transform: 'translateY(5px)' }}>
+                <Typography
+                  sx={{
+                    mr: 3,
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    transform: "translateY(5px)",
+                  }}
+                >
                   Welcome {user?.email}
                 </Typography>
               </>
