@@ -1,8 +1,6 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import ConfirmationInstruction from "../features/authentication/components/ConfirmationInstruction";
 import useRegister from "../features/authentication/hooks/useRegister";
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -25,7 +23,6 @@ type InputsType = {
 };
 
 const RegisterPage = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -35,7 +32,7 @@ const RegisterPage = () => {
   } = useForm<InputsType>();
   const { data, error, fetchRegistry } = useRegister({
     onSuccess: () => {
-      setFormSubmitted(true);
+      navigate('/login');
     },
   });
   const onSubmit: SubmitHandler<InputsType> = (data) => {
@@ -47,8 +44,6 @@ const RegisterPage = () => {
       },
     });
   };
-
-  if (formSubmitted) return <ConfirmationInstruction />;
 
   return (
     <Box>
