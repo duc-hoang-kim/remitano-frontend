@@ -6,6 +6,10 @@ COPY package.json ./
 
 COPY yarn.lock ./
 
+RUN npm config rm proxy
+
+RUN npm config rm https-proxy
+
 RUN yarn install --network-timeout 1000000
 
 COPY . .
