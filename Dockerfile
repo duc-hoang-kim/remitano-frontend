@@ -2,7 +2,9 @@ FROM node:16.18.0 as builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
+
+COPY  yarn.lock ./
 
 RUN yarn install
 
