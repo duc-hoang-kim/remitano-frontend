@@ -2,9 +2,9 @@ FROM node:16.18.0 as builder
 
 WORKDIR /app
 
-COPY package*.json yarn.lock ./
+COPY package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
 
