@@ -26,13 +26,13 @@ const RegisterForm = () => {
     watch,
     formState: { errors },
   } = useForm<RegisterInputsType>();
-  const { data, error, fetchRegistry } = useRegister({
+  const { data, error, fetchRegister } = useRegister({
     onSuccess: () => {
       navigate("/login?register-success=true");
     },
   });
   const onSubmit: SubmitHandler<RegisterInputsType> = (data) => {
-    fetchRegistry({
+    fetchRegister({
       user: {
         email: data.email,
         password: data.password,
@@ -46,6 +46,7 @@ const RegisterForm = () => {
         <StyledBox>
           <TextField
             id="email-input"
+            test-dataid="email-input"
             label="Email"
             variant="outlined"
             sx={{ width: "100%" }}
@@ -73,24 +74,17 @@ const RegisterForm = () => {
               },
             })}
           />
-          <Typography color="red">
-            {errors.passwordConfirmation?.message}
-          </Typography>
+          <Typography test-dataid="form-error" color="red">{errors.passwordConfirmation?.message}</Typography>
         </StyledBox>
         <Typography color="red">{error}</Typography>
         <Button
           variant="contained"
           type="submit"
           sx={{ marginTop: "20px", marginBottom: "20px" }}
+          onClick={handleSubmit(onSubmit)}
         >
           Register
         </Button>
-        <Typography>
-          Already had an account?{" "}
-          <Button variant="text" onClick={() => navigate("/login")}>
-            Login
-          </Button>
-        </Typography>
       </form>
     </Box>
   );

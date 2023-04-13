@@ -15,7 +15,7 @@
     "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
-    "typescript": "^5.0.4",
+    "typescript": "^4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -23,7 +23,8 @@
     "start:test": "PORT=4001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +47,10 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "enzyme": "^3.11.0",
     "jest": "^27.5.1",
-    "jest-environment-jsdom": "^29.5.0"
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }

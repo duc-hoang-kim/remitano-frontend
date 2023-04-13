@@ -12,7 +12,7 @@ const useRegister = ({ onSuccess }: useRegisterProps) => {
     onSuccess: () => onSuccess(),
   });
 
-  return { data, error, fetchRegistry: fetchApi };
+  return { data, error, fetchRegister: fetchApi };
 };
 
 export default useRegister;
