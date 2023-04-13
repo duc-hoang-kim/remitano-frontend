@@ -40,7 +40,7 @@ describe("useLogin", () => {
     });
 
     await waitFor(() => {
-      expect(fetch.mock.calls[0][0]).toMatch(/api\/v1\/users\/sign_in/);
+      expect(fetch.mock.calls[0][0]).toBe("http://test.com/api/v1/users/sign_in");
       expect(JSON.stringify(fetch.mock.calls[0][1])).toBe(
         JSON.stringify({
           method: "POST",

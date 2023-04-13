@@ -31,7 +31,7 @@ describe("useLogout", () => {
     });
 
     await waitFor(() => {
-      expect(fetch.mock.calls[0][0]).toMatch(/api\/v1\/users\/sign_out/);
+      expect(fetch.mock.calls[0][0]).toMatch("http://test.com/api/v1/users/sign_out");
       expect(JSON.stringify(fetch.mock.calls[0][1])).toBe(
         JSON.stringify({
           method: "DELETE",

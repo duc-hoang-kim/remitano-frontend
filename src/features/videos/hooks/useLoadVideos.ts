@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { VideoType } from "../types";
 
@@ -21,7 +21,6 @@ const useLoadVideos = ({ pageIndex }: useLoadVideosProps) => {
       description: raw_video.description,
       title: raw_video.title,
       createdAt: raw_video.created_at,
-      updatedAt: raw_video.updated_at
     }) as VideoType
   )
 

@@ -15,14 +15,14 @@ type useFetchProps = {
 const useFetch = ({ path, method, onSuccess }: useFetchProps) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [total, setTotal] = useState(0);
 
   const fetchApi = useCallback(
     (params: any = {}) => {
       const url =
-        `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}?` +
-        (method === "GET" ? new URLSearchParams(params) : "");
+        `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}` +
+        (method === "GET" ? `?${new URLSearchParams(params)}` : "");
 
       const common_params = {
         method: method,

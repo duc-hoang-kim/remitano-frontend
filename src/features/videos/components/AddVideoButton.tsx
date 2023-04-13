@@ -2,10 +2,6 @@ import { Button } from "@mui/material";
 import React, { useState } from "react";
 import AddVideoModal from "./AddVideoModal";
 
-type AddVideoButtonProps = {
-  onClick: () => void;
-};
-
 const AddVideoButton = () => {
   const [openAddVideoModal, setOpenAddVideoModal] = useState<boolean>(false);
 

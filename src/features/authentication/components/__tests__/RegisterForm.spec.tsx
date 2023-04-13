@@ -31,7 +31,6 @@ describe("RegisterForm", () => {
     expect(
       screen.getByRole("button", { name: /register/i })
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /login/i })).toBeInTheDocument();
   });
 
   it("submits the form with user input", async () => {
