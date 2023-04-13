@@ -60,15 +60,10 @@ const LoginForm = () => {
           variant="contained"
           type="submit"
           sx={{ marginTop: "20px", marginBottom: "20px" }}
+          data-testid='login-btn'
         >
           Login
         </Button>
-        <Typography>
-          New to Funny Movies?{" "}
-          <Button variant="text" onClick={() => navigate("/register")}>
-            Register
-          </Button>
-        </Typography>
       </form>
     </Box>
   );

@@ -37,13 +37,13 @@ const useFetch = ({ path, method, onSuccess }: useFetchProps) => {
           : { ...common_params, body: JSON.stringify(params) };
 
       fetch(url, fetch_params).then((res) => {
-        setTotal(parseInt(res.headers.get("Total") || "0"));
+        setTotal(parseInt(res.headers?.get("Total") || "0"));
         if (res.ok) {
           res.json().then((resBody) => {
-            onSuccess?.(resBody);
-            setError(resBody.error);
             setData(resBody.data);
+            setError(resBody.error);
             setIsLoading(false);
+            onSuccess?.(resBody);
           });
         } else {
           res.json().then((resBody) => {
