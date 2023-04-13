@@ -36,7 +36,7 @@ describe("useRegister", () => {
     });
 
     await waitFor(() => {
-      expect(fetch.mock.calls[0][0]).toMatch(/api\/v1\/users/);
+      expect(fetch.mock.calls[0][0]).toMatch("http://test.com/api/v1/users");
       expect(JSON.stringify(fetch.mock.calls[0][1])).toBe(
         JSON.stringify({
           method: "POST",

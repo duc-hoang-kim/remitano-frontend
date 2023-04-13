@@ -9,5 +9,4 @@ export type VideoType = {
   description: string,
   title: string,
   createdAt: Date,
-  updatedAt: Date
 }
