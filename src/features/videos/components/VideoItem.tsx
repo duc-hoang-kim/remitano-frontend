@@ -1,5 +1,4 @@
 import { Box, Grid, Typography } from "@mui/material";
-import VideoIframe from "./VideoIframe";
 import { VideoType } from "../types";
 import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from "@mui/icons-material/ThumbUpOffAlt";
@@ -23,7 +22,15 @@ const VideoItem = ({ video }: VideoItemProps) => {
     >
       <Grid container>
         <Grid item xs={12} md={5} sx={{ minHeight: "20vh" }}>
-          <VideoIframe video_id={video.youtubeId} />
+          <iframe
+            height="100%"
+            width="100%"
+            src={`https://www.youtube.com/embed/${video.youtubeId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            data-testid="embed-iframe"
+          ></iframe>
         </Grid>
         <Grid item xs={12} md={7} pl={2}>
           <Typography variant="h5" color="red" fontWeight={600}>

@@ -1,16 +1,9 @@
-import { Box, Modal, Typography, styled } from "@mui/material";
-import React, { useState } from "react";
-import VideoForm from "./VideoForm";
+import { Box, Button, Modal, TextField, Typography, styled } from "@mui/material";
+import React from "react";
+import useCreateVideo from "../hooks/useCreateVideo";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const ModalContainer = styled(Box)(({ theme }) => ({
-  // position: "absolute",
-  // top: "50%",
-  // left: "50%",
-  // transform: "translate(-50%, -50%)",
-  // backgroundColor: '#fff',
-  // borderRadius: "15px",
-  // boxShadow: '24px',
-  // padding: '15px',
   [theme.breakpoints.down("md")]: {
     width: "85vw",
   },
@@ -38,20 +31,59 @@ type AddVideoModalProps = {
   onClose: () => void;
 };
 
+type InputsType = {
+  youtubeUrl: string;
+};
+
 const AddVideoModal = ({ open, onClose }: AddVideoModalProps) => {
+  const { error, fetchCreateVideo } = useCreateVideo({
+    onSuccess: onClose,
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputsType>();
+  const onSubmit: SubmitHandler<InputsType> = (data) => {
+    fetchCreateVideo({
+      youtube_url: data.youtubeUrl
+    });
+  };
+
   return (
     <Modal
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      data-testid="add-video-modal"
     >
       <ModalContainer sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Share a youtube video
         </Typography>
 
-        <VideoForm onSubmitSuccess={onClose}/>
+        <Box sx={{ textAlign: "center", marginTop: "35px" }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box>
+              <TextField
+                id="outlined-basic"
+                label="Youtube URL"
+                variant="outlined"
+                sx={{ width: "100%" }}
+                {...register("youtubeUrl")}
+              />
+            </Box>
+            <Typography color="red">{error}</Typography>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ marginTop: "20px", marginBottom: "20px" }}
+            >
+              Share
+            </Button>
+          </form>
+        </Box>
       </ModalContainer>
     </Modal>
   );

@@ -26,7 +26,7 @@ const RegisterForm = () => {
     watch,
     formState: { errors },
   } = useForm<RegisterInputsType>();
-  const { data, error, fetchRegister } = useRegister({
+  const { error, fetchRegister } = useRegister({
     onSuccess: () => {
       navigate("/login?register-success=true");
     },

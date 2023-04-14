@@ -19,7 +19,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const { fetchLogin, error } = useLogin();
   const {
     register,
@@ -37,7 +36,7 @@ const LoginForm = () => {
 
   return (
     <Box sx={{ textAlign: "center", marginTop: "35px" }}>
-      <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="login-form" data-testid="login-form" onSubmit={handleSubmit(onSubmit)}>
         <StyledBox>
           <TextField
             id="email-input"
