@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { ReactNode, useEffect } from "react";
 import { UserType } from "../features/authentication/types";
 
@@ -65,4 +65,4 @@ const useAuthenticate = () => {
   return context;
 };
 
-export { AuthProvider, useAuthenticate };
+export { AuthContext, AuthProvider, useAuthenticate };

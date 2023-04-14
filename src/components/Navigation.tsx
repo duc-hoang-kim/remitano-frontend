@@ -47,7 +47,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" data-testid="responsive-app-bar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <HomeIcon
@@ -109,7 +109,10 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>,
 
-                <AddVideoMenuItem key="add video" onClick={handleCloseNavMenu} />,
+                <AddVideoMenuItem
+                  key="add video"
+                  onClick={handleCloseNavMenu}
+                />,
 
                 <MenuItem key="current user" onClick={handleCloseNavMenu}>
                   <Typography>{truncateText(user?.email, 10)}</Typography>

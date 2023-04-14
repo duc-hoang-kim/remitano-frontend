@@ -8,7 +8,7 @@ const LoginPage = () => {
   const registerSuccess = searchParams.get("register-success");
 
   return (
-    <Box>
+    <Box data-testid="login-page">
       {registerSuccess == "true" && (
         <Typography sx={{ textAlign: "center", mb: 3, color: "green" }}>
           Your account was created successfully, you can login to your account

@@ -7,7 +7,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box>
+    <Box data-testid="register-page">
       <Typography variant="h4" sx={{ textAlign: "center" }}>
         Register Funny Movies Account
       </Typography>
