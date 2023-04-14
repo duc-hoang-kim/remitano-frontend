@@ -36,7 +36,11 @@ const LoginForm = () => {
 
   return (
     <Box sx={{ textAlign: "center", marginTop: "35px" }}>
-      <form id="login-form" data-testid="login-form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="login-form"
+        data-testid="login-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <StyledBox>
           <TextField
             id="email-input"
@@ -59,7 +63,7 @@ const LoginForm = () => {
           variant="contained"
           type="submit"
           sx={{ marginTop: "20px", marginBottom: "20px" }}
-          data-testid='login-btn'
+          data-testid="login-btn"
         >
           Login
         </Button>

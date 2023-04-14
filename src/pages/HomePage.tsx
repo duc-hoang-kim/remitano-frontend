@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import useLoadVideos from '../features/videos/hooks/useLoadVideos'
-import { Box, Modal, Pagination, Typography } from '@mui/material'
+import React from 'react'
+import { Box, Pagination } from '@mui/material'
 import VideoItem from '../features/videos/components/VideoItem'
 import { useHomepageContext } from '../contexts/HomepageContext'
 

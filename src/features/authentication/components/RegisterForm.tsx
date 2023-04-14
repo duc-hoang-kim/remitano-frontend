@@ -42,7 +42,11 @@ const RegisterForm = () => {
   };
   return (
     <Box sx={{ textAlign: "center", marginTop: "35px" }}>
-      <form id="register-form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="register-form"
+        data-testid="register-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <StyledBox>
           <TextField
             id="email-input"
@@ -74,7 +78,9 @@ const RegisterForm = () => {
               },
             })}
           />
-          <Typography test-dataid="form-error" color="red">{errors.passwordConfirmation?.message}</Typography>
+          <Typography test-dataid="form-error" color="red">
+            {errors.passwordConfirmation?.message}
+          </Typography>
         </StyledBox>
         <Typography color="red">{error}</Typography>
         <Button
