@@ -13,16 +13,20 @@ type useFetchProps = {
 };
 
 const useFetch = ({ path, method, onSuccess }: useFetchProps) => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [total, setTotal] = useState(0);
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [total, setTotal] = useState<number>(0);
 
   const fetchApi = useCallback(
     (params: any = {}) => {
+      const decodedParams =
+        method === "GET" && Object.keys(params).length !== 0
+          ? `?${new URLSearchParams(params)}`
+          : "";
+
       const url =
-        `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}` +
-        (method === "GET" ? `?${new URLSearchParams(params)}` : "");
+        `${process.env.REACT_APP_REMITANO_BACKEND_URL}/${path}` + decodedParams;
 
       const common_params = {
         method: method,

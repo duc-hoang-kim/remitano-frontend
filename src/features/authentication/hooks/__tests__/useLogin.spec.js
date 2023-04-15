@@ -1,9 +1,6 @@
 import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import useLogin from "../useLogin";
-import {
-  AuthProvider,
-} from "../../../../contexts/AuthContext";
 import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 
@@ -27,8 +24,7 @@ describe("useLogin", () => {
       JSON.stringify({ data: { user: { email: "user_test@mail.com" } } })
     );
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogin(), { wrapper });
+    const { result } = renderHook(() => useLogin());
 
     act(() => {
       result.current.fetchLogin({
@@ -40,7 +36,9 @@ describe("useLogin", () => {
     });
 
     await waitFor(() => {
-      expect(fetch.mock.calls[0][0]).toBe("http://test.com/api/v1/users/sign_in");
+      expect(fetch.mock.calls[0][0]).toBe(
+        "http://test.com/api/v1/users/sign_in"
+      );
       expect(JSON.stringify(fetch.mock.calls[0][1])).toBe(
         JSON.stringify({
           method: "POST",
@@ -65,8 +63,7 @@ describe("useLogin", () => {
           }),
       });
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogin(), { wrapper });
+    const { result } = renderHook(() => useLogin());
 
     act(() => {
       result.current.fetchLogin({
@@ -98,8 +95,7 @@ describe("useLogin", () => {
           }),
       });
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogin(), { wrapper });
+    const { result } = renderHook(() => useLogin());
 
     act(() => {
       result.current.fetchLogin({

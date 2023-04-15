@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { ReactNode, useEffect } from "react";
 import { UserType } from "../features/authentication/types";
+import useFetchSession from "../features/authentication/hooks/useFetchSession";
 
 type AuthProviderPropsType = {
   children: ReactNode;
@@ -22,18 +23,16 @@ const AuthContext = React.createContext<SessionType>({
 
 const AuthProvider = ({ children }: AuthProviderPropsType) => {
   const navigate = useNavigate();
-
+  const { data: session, fetchSession } = useFetchSession();
   const [user, setUser] = React.useState<UserType | null>(null);
 
   const logInAs = (user: UserType) => {
     setUser(user);
-    localStorage.setItem('currentUserEmail', user.email);
     navigate("/");
   };
 
   const logOut = () => {
     setUser(null);
-    localStorage.removeItem('currentUserEmail');
     navigate("/")
   };
 
@@ -42,10 +41,16 @@ const AuthProvider = ({ children }: AuthProviderPropsType) => {
   };
 
   useEffect(() => {
-    const email = localStorage.getItem('currentUserEmail');
-    if (email) setUser({email: email} as UserType)
+    if (!(session?.user?.email)) return;
+
+    const user: UserType = { email: session.user.email };
+    setUser(user);
   }
-  , []);
+  , [session]);
+
+  useEffect(() => {
+    fetchSession();
+  }, []);
 
   const value = {
     user,

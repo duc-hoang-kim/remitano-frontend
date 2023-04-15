@@ -1,9 +1,6 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import useRegister from "../useRegister";
-import useFetch from "../../../../hooks/useFetch";
-
-import { AuthProvider } from "../../../../contexts/AuthContext";
 import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 
@@ -20,10 +17,7 @@ describe("useRegister", () => {
       JSON.stringify({ data: { user: { email: "user_test@mail.com" } } })
     );
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useRegister({ onSuccess: jest.fn() }), {
-      wrapper,
-    });
+    const { result } = renderHook(() => useRegister({ onSuccess: jest.fn() }));
 
     act(() => {
       result.current.fetchRegister({
@@ -62,10 +56,7 @@ describe("useRegister", () => {
       });
 
     const onSuccess = jest.fn();
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useRegister({ onSuccess: onSuccess }), {
-      wrapper,
-    });
+    const { result } = renderHook(() => useRegister({ onSuccess: onSuccess }));
 
     act(() => {
       result.current.fetchRegister({
@@ -98,10 +89,7 @@ describe("useRegister", () => {
           }),
       });
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useRegister({ onSuccess: jest.fn() }), {
-      wrapper,
-    });
+    const { result } = renderHook(() => useRegister({ onSuccess: jest.fn() }));
 
     act(() => {
       result.current.fetchRegister({
