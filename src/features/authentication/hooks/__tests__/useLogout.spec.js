@@ -70,8 +70,6 @@ describe("useLogout", () => {
   });
 
   it("returns error when API call fails", async () => {
-    const user = { email: "test@example.com", password: "123456" };
-
     global.fetch = () =>
       Promise.resolve({
         ok: false,

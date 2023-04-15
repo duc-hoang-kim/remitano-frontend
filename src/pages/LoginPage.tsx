@@ -1,3 +1,4 @@
+import React  from 'react';
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import LoginForm from "../features/authentication/components/LoginForm";

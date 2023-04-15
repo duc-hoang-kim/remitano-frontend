@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
-declare var process: {
+declare const process: {
   env: {
     REACT_APP_REMITANO_BACKEND_URL: string;
   };
@@ -9,16 +9,19 @@ declare var process: {
 type useFetchProps = {
   path: string;
   method: "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
-  onSuccess?: (data: any) => any;
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  onSuccess?: (data: any) => void;
 };
 
 const useFetch = ({ path, method, onSuccess }: useFetchProps) => {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [total, setTotal] = useState<number>(0);
 
   const fetchApi = useCallback(
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     (params: any = {}) => {
       const decodedParams =
         method === "GET" && Object.keys(params).length !== 0

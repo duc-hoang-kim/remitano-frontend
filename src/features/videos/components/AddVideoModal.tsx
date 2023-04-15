@@ -1,4 +1,11 @@
-import { Box, Button, Modal, TextField, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Button,
+  Modal,
+  TextField,
+  Typography,
+  styled,
+} from "@mui/material";
 import React from "react";
 import useCreateVideo from "../hooks/useCreateVideo";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -37,16 +44,19 @@ type InputsType = {
 
 const AddVideoModal = ({ open, onClose }: AddVideoModalProps) => {
   const { error, fetchCreateVideo } = useCreateVideo({
-    onSuccess: onClose,
+    onSuccess: () => {
+      reset();
+      onClose();
+    },
   });
   const {
+    reset,
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<InputsType>();
   const onSubmit: SubmitHandler<InputsType> = (data) => {
     fetchCreateVideo({
-      youtube_url: data.youtubeUrl
+      youtube_url: data.youtubeUrl,
     });
   };
 

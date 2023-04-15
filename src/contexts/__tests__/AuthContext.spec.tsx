@@ -10,7 +10,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-let mockUseFetchSession = jest.fn();
+const mockUseFetchSession = jest.fn();
 
 jest.mock("../../features/authentication/hooks/useFetchSession", () => ({
   __esModule: true,

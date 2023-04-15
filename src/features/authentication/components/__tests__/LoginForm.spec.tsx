@@ -1,16 +1,14 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import LoginForm from "../LoginForm";
-import useLogin from "../../hooks/useLogin";
-import { Button } from "@mui/material";
 
-var mockNavigate = jest.fn();
+const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(() => mockNavigate),
 }));
 
-let mockFetchLogin = jest.fn();
+const mockFetchLogin = jest.fn();
 
 jest.mock("../../hooks/useLogin", () => ({
   __esModule: true,

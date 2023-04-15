@@ -1,3 +1,4 @@
+import React from "react";
 import {
   act,
   render,
@@ -5,16 +6,15 @@ import {
   waitFor,
 } from "@testing-library/react";
 import RegisterForm from "../RegisterForm";
-import useRegister from "../../hooks/useRegister";
 import userEvent from "@testing-library/user-event";
 
-var mockNavigate = jest.fn();
+const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(() => mockNavigate),
 }));
 
-let mockFetchRegister = jest.fn();
+const mockFetchRegister = jest.fn();
 
 jest.mock("../../hooks/useRegister", () => ({
   __esModule: true,
@@ -60,7 +60,7 @@ describe("RegisterForm", () => {
   });
 
   it("displays validation error message for password confirmation", async () => {
-    const { getByLabelText, getByText, getByRole, container } = render(
+    const { getByLabelText, getByText, getByRole } = render(
       <RegisterForm />
     );
 

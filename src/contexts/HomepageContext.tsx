@@ -7,39 +7,47 @@ type AuthProviderPropsType = {
 };
 
 type HompageContextType = {
-  videos: VideoType[],
-  numberOfPages: number,
-  page: number,
-  setPage: (page: number) => void,
-  refresh: () => void,
-}
+  videos: VideoType[];
+  numberOfPages: number;
+  page: number;
+  setPage: (page: number) => void;
+  refresh: () => void;
+};
 
 const HomepageContext = React.createContext<HompageContextType>({
   videos: [],
   numberOfPages: 0,
   page: 0,
-  setPage: (page: number) => {},
-  refresh: () => {}
+  setPage: () => {},
+  refresh: () => {},
 });
 
 const HomepageProvider = ({ children }: AuthProviderPropsType) => {
-  const [page, setPage] = useState<number>(1)
-  const { data: videos, total, fetchVideos } = useLoadVideos({ pageIndex: page })
+  const [page, setPage] = useState<number>(1);
+  const {
+    data: videos,
+    total,
+    fetchVideos,
+  } = useLoadVideos({ pageIndex: page });
 
   const refresh = () => {
     setPage(1);
     fetchVideos();
-  }
+  };
 
   const value = {
     page,
     setPage,
     videos,
-    numberOfPages: Math.ceil(total/4),
+    numberOfPages: Math.ceil(total / 4),
     refresh,
   };
 
-  return <HomepageContext.Provider value={value}>{children}</HomepageContext.Provider>;
+  return (
+    <HomepageContext.Provider value={value}>
+      {children}
+    </HomepageContext.Provider>
+  );
 };
 
 const useHomepageContext = () => {

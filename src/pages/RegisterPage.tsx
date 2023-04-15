@@ -1,5 +1,5 @@
-import { Box, Button, TextField, Typography, styled } from "@mui/material";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React  from 'react';
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "../features/authentication/components/RegisterForm";
 import AnonymousPageWrapper from "./AnonymousPageWrapper";

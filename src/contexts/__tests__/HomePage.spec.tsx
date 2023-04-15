@@ -1,8 +1,9 @@
+import React from "react";
 import { renderHook, act } from '@testing-library/react-hooks'
 import { HomepageProvider, useHomepageContext } from '../HomepageContext'
 import { mockParsedVideos } from '../__mocks__/videos';
 
-let mockFetchVideos = jest.fn()
+const mockFetchVideos = jest.fn()
 
 jest.mock("../../features/videos/hooks/useLoadVideos", () => ({
   __esModule: true,

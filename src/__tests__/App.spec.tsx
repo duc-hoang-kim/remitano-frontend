@@ -1,5 +1,5 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
 import App from "../App";
 
 describe("App component", () => {
@@ -24,12 +24,12 @@ describe("App component", () => {
     expect(loginPageElement).toBeInTheDocument();
   });
 
-  it('should render the RegisterPage component on the register route', () => {
+  it("should render the RegisterPage component on the register route", () => {
     window.history.pushState({}, "", "/register");
 
     render(<App />);
 
-    const registerPageElement = screen.getByTestId('register-page');
+    const registerPageElement = screen.getByTestId("register-page");
     expect(registerPageElement).toBeInTheDocument();
   });
 });

@@ -17,7 +17,7 @@ type SessionType = {
 const AuthContext = React.createContext<SessionType>({
   user: null,
   isAuthenticated: () => false,
-  logInAs: (user: UserType) => {},
+  logInAs: () => {},
   logOut: () => {},
 });
 
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }: AuthProviderPropsType) => {
 
   const logOut = () => {
     setUser(null);
-    navigate("/")
+    navigate("/");
   };
 
   const isAuthenticated = () => {
@@ -41,12 +41,11 @@ const AuthProvider = ({ children }: AuthProviderPropsType) => {
   };
 
   useEffect(() => {
-    if (!(session?.user?.email)) return;
+    if (!session?.user?.email) return;
 
     const user: UserType = { email: session.user.email };
     setUser(user);
-  }
-  , [session]);
+  }, [session]);
 
   useEffect(() => {
     fetchSession();

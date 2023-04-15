@@ -1,8 +1,9 @@
+import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { VideoType } from "../types";
-import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
+// import ThumbUpIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownIcon from "@mui/icons-material/ThumbDownAlt";
+// import ThumbDownIcon from "@mui/icons-material/ThumbDownAlt";
 import ThumbDownOffIcon from "@mui/icons-material/ThumbDownOffAlt";
 import truncateText from "../../../utils/truncateText";
 
