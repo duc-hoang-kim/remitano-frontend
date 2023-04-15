@@ -1,5 +1,5 @@
-import { getByRole, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import React from "react";
+import { render } from "@testing-library/react";
 import VideoItem from "../VideoItem";
 import { VideoType } from "../../types";
 
@@ -17,11 +17,7 @@ const mockVideo: VideoType = {
 
 describe("VideoItem", () => {
   it("Render add button and can open modal", () => {
-    const onClick = jest.fn();
-
-    const { getByTestId, getByText } = render(
-      <VideoItem video={mockVideo} />
-    );
+    const { getByTestId, getByText } = render(<VideoItem video={mockVideo} />);
 
     const videoEmbedIframe = getByTestId("embed-iframe");
     const videoTitle = getByText(mockVideo.title);

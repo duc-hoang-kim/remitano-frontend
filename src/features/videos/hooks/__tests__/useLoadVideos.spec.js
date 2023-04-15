@@ -1,10 +1,9 @@
 import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
-import { AuthProvider } from "../../../../contexts/AuthContext";
 import { enableFetchMocks } from "jest-fetch-mock";
 import useLoadVideos from "../useLoadVideos";
 import { mockFetchVideosData, mockParsedVideos } from "../__mocks__/videos";
-
+import '@testing-library/jest-dom';
 enableFetchMocks();
 
 var mockNavigate = jest.fn();

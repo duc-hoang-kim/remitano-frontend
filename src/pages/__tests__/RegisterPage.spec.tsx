@@ -1,6 +1,6 @@
+import React  from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useSearchParams } from 'react-router-dom';
 import RegisterPage from '../RegisterPage';
 
 // mock useSearchParams hook

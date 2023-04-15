@@ -1,7 +1,6 @@
 import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import useFetchSession from "../useFetchSession";
-import { AuthProvider } from "../../../../contexts/AuthContext";
 import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 

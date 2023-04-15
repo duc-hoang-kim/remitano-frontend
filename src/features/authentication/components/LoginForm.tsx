@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginInputsType } from "../types";
@@ -23,7 +22,6 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<LoginInputsType>();
   const onSubmit: SubmitHandler<LoginInputsType> = (data) => {
     fetchLogin({

@@ -1,6 +1,5 @@
 import { useAuthenticate } from "../../../contexts/AuthContext";
 import useFetch from "../../../hooks/useFetch";
-import { UserType } from "../types";
 
 const useLogout = () => {
   const { logOut } = useAuthenticate();

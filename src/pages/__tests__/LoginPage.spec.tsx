@@ -1,43 +1,47 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { useSearchParams } from 'react-router-dom';
-import LoginPage from '../LoginPage';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import LoginPage from "../LoginPage";
 
 // mock useSearchParams hook
 const mockNavigate = jest.fn();
-const mockGetParams = jest.fn()
+const mockGetParams = jest.fn();
 
-jest.mock('react-router-dom', () => ({
+jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
-  useSearchParams: () => ([{
-    get: (key: string) => mockGetParams(key)
-  }]),
+  useSearchParams: () => [
+    {
+      get: (key: string) => mockGetParams(key),
+    },
+  ],
 }));
 
-describe('LoginPage', () => {
+describe("LoginPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render login form', () => {
+  it("should render login form", () => {
     render(<LoginPage />);
-    const loginForm = screen.getByTestId('login-form');
+    const loginForm = screen.getByTestId("login-form");
     expect(loginForm).toBeInTheDocument();
   });
 
-  it('should show success message if register-success query param is true', () => {
-    mockGetParams.mockImplementation(key => (key === 'register-success' ? "true" : null))
+  it("should show success message if register-success query param is true", () => {
+    mockGetParams.mockImplementation((key) =>
+      key === "register-success" ? "true" : null
+    );
     render(<LoginPage />);
     const successMessage = screen.getByText(
-      'Your account was created successfully, you can login to your account now',
+      "Your account was created successfully, you can login to your account now"
     );
     expect(successMessage).toBeInTheDocument();
   });
 
-  it('should navigate to register page when register button is clicked', () => {
+  it("should navigate to register page when register button is clicked", () => {
     render(<LoginPage />);
-    const registerButton = screen.getByRole('button', { name: /register/i });
+    const registerButton = screen.getByRole("button", { name: /register/i });
     userEvent.click(registerButton);
-    expect(mockNavigate).toHaveBeenCalledWith('/register');
+    expect(mockNavigate).toHaveBeenCalledWith("/register");
   });
 });

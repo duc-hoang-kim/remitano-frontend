@@ -1,15 +1,16 @@
+import React  from 'react';
 import { render } from "@testing-library/react";
 import AnonymousPageWrapper from "../AnonymousPageWrapper";
 import { Box } from "@mui/material";
 
-let mockIsAuthenticated = jest.fn();
+const mockIsAuthenticated = jest.fn();
 
 jest.mock("../../contexts/AuthContext", () => ({
   ...jest.requireActual("../../contexts/AuthContext"),
   isAuthentication: () => mockIsAuthenticated(),
 }));
 
-var mockNavigate = jest.fn()
+const mockNavigate = jest.fn()
 
 jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,

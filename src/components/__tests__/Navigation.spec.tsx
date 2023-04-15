@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import ResponsiveAppBar from "../Navigation";
 
-let mockFetchLogout = jest.fn();
+const mockFetchLogout = jest.fn();
 
 jest.mock("../../features/authentication/hooks/useLogout", () => ({
   __esModule: true,
@@ -17,7 +17,7 @@ describe("ResponsiveAppBar component", () => {
     email: "testuser@example.com",
   };
 
-  let mockIsAuthenticated = jest.fn().mockReturnValue(false);
+  const mockIsAuthenticated = jest.fn().mockReturnValue(false);
 
   const setup = () => {
     render(
