@@ -1,7 +1,6 @@
 import { act, waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import useLogout from "../useLogout";
-import { AuthProvider } from "../../../../contexts/AuthContext";
 import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 
@@ -23,15 +22,16 @@ describe("useLogout", () => {
     fetch.resetMocks();
     fetch.mockResponse(JSON.stringify(""));
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogout(), { wrapper });
+    const { result } = renderHook(() => useLogout());
 
     act(() => {
       result.current.fetchLogout();
     });
 
     await waitFor(() => {
-      expect(fetch.mock.calls[0][0]).toMatch("http://test.com/api/v1/users/sign_out");
+      expect(fetch.mock.calls[0][0]).toMatch(
+        "http://test.com/api/v1/users/sign_out"
+      );
       expect(JSON.stringify(fetch.mock.calls[0][1])).toBe(
         JSON.stringify({
           method: "DELETE",
@@ -45,19 +45,16 @@ describe("useLogout", () => {
   });
 
   it("returns data and fetchLogin function when API call is successful", async () => {
-    const user = { email: "test@example.com", password: "123456" };
-
     global.fetch = () =>
       Promise.resolve({
         ok: true,
         json: () =>
           Promise.resolve({
-            data: { mock: 'data' },
+            data: { mock: "data" },
           }),
       });
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogout(), { wrapper });
+    const { result } = renderHook(() => useLogout());
 
     act(() => {
       result.current.fetchLogout();
@@ -66,7 +63,7 @@ describe("useLogout", () => {
     await waitFor(() => {
       expect(result.current.error).not.toBeDefined();
       expect(JSON.stringify(result.current.data)).toBe(
-        JSON.stringify({ mock: 'data' })
+        JSON.stringify({ mock: "data" })
       );
       expect(mockLogOut).toHaveBeenCalled();
     });
@@ -84,8 +81,7 @@ describe("useLogout", () => {
           }),
       });
 
-    const wrapper = ({ children }) => <AuthProvider>{children}</AuthProvider>;
-    const { result } = renderHook(() => useLogout(), { wrapper });
+    const { result } = renderHook(() => useLogout());
 
     act(() => {
       result.current.fetchLogout();
